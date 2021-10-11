@@ -39,6 +39,9 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+
+        $category_id = $request->category_id;
+
         $post = new Post($request->all());
         $post->user_id = $request->user()->id;
 

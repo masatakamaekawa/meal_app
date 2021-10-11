@@ -17,20 +17,20 @@
             </div>
 
             <div class="form-group row">
-                <label for="radio01" class="col-md-4 col-form-label text-sm mb-2">カテゴリー</label>
+                <label for="category" class="col-md-4 col-form-label text-sm mb-2">カテゴリー</label>
                 <div class="col-md-6">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" id="radio01" name="radioGrp02" value="opt1"
+                        <input class="form-check-input" type="radio" id="category01" name="category_id" value="1"
                             checked="checked">
-                        <label class="form-check-label" for="radio01">野菜</label>
+                        <label class="form-check-label" for="category01">野菜</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="radio02" name="radioGrp02" value="opt2">
-                        <label class="form-check-label" for="radio02">タンパク質</label>
+                        <input class="form-check-input" type="radio" id="category02" name="category_id" value="2">
+                        <label class="form-check-label" for="category02">タンパク質</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="radio03" name="radioGrp02" value="opt3">
-                        <label class="form-check-label" for="radio03">炭水化物</label>
+                        <input class="form-check-input" type="radio" id="category03" name="category_id" value="3">
+                        <label class="form-check-label" for="category03">炭水化物</label>
                     </div>
                 </div>
             </div>
