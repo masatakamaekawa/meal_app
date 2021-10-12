@@ -9,7 +9,7 @@
                 {{ $post->title }}</h2>
             <h3>{{ $post->user->name }}</h3>
             <p class="text-sm mb-2 md:text-base font-normal text-gray-600">
-                <span class="text-red-400 font-bold">{{ date('Y-m-d H:i:s', strtotime('-1 day')) < $post->created_at ? 'NEW' : '' }}</span>
+                <span class="text-red-400 font-bold">{{ date('Y-m-d H:i:s') > $post->created_at->diffForHumans()}}</span>
                 {{ $post->created_at }}
             </p>
             <img src="{{ $post->image_url }}" alt="" class="mb-4">
@@ -28,4 +28,12 @@
             @endcan
         </div>
     </div>
+<span>
+	<a href="{{ route('unlike', $post) }}" class="btn btn-success btn-sm">
+        お気に入り
+		<span class="badge">
+			{{ $post->likes->count() }}
+		</span>
+	</a>
+</span>
 </x-app-layout>

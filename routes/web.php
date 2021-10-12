@@ -29,3 +29,6 @@ Route::resource('posts', PostController::class)
     ->only(['show', 'index']);
 
 require __DIR__.'/auth.php';
+
+Route::get('/reply/like/{post}', 'LikeController@like')->name('like');
+Route::get('/reply/unlike/{post}', 'LikeController@unlike')->name('unlike');
