@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::resource('posts', PostController::class)
 Route::resource('posts', PostController::class)
     ->only(['show', 'index']);
 
-require __DIR__.'/auth.php';
+Route::get('/post/like/{post}', [LikeController::class, 'like'])->name('like');
+Route::get('/post/unlike/{post}', [LikeController::class, 'unlike'])->name('unlike');
 
-Route::get('/reply/like/{post}', 'LikeController@like')->name('like');
-Route::get('/reply/unlike/{post}', 'LikeController@unlike')->name('unlike');
+require __DIR__.'/auth.php';

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -20,6 +21,11 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function likes()
+    {
+      return $this->hasMany(Like::class);
+    }
     
     public function getImageUrlAttribute()
     {
@@ -29,5 +35,5 @@ class Post extends Model
     public function getImagePathAttribute()
     {
         return 'images/posts/' . $this->image;
-    }
+    }    
 }

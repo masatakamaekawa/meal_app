@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\Like;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -82,8 +81,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
+        $post = Post::with('likes')->find($id);
         $like = Like::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
+
         return view('posts.show', compact('post','like'));
     }
 
@@ -190,17 +190,16 @@ class PostController extends Controller
     {
         return date('YmdHis') . '_' . $file->getClientOriginalName();
     }
-
         public function posts() {
         return $this->hasMany('App\Models\Post');
     }
-        public function likes() {
+    public function likes() {
         return $this->hasMany('App\Models\Like');
     }
         public function user() {
         return $this->belongsTo('App\Models\User');
     }
-        public function post() {
+    public function post() {
         return $this->belongsTo('App\Models\Post');
     }
 }
