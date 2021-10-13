@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Like;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -81,12 +82,14 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::with('likes')->find($id);
+        $post = Post::find($id);
+        if(auth::check()){
         $like = Like::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
-
         return view('posts.show', compact('post','like'));
+        }else{
+            return view('posts.show', compact('post'));
     }
-
+}
     /**
      * Show the form for editing the specified resource.
      *

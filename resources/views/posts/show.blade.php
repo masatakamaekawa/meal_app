@@ -16,20 +16,22 @@
             <p class="text-gray-700 text-base">{!! nl2br(e($post->body)) !!}</p>
         </article>
 
-        @if ($like)
-            <a href="{{ route('unlike', $post) }}" 
-            class="bg-pink-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-42">お気に入りの削除</a><br><br>
+        @if (Auth::check())
+            @if ($like)
+                <a href="{{ route('unlike', $post) }}"
+                    class="bg-pink-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-42">お気に入りの削除</a><br><br>
                 <b>お気に入り数</b>
                 <span class="badge">
                     {{ $post->likes->count() }}
                 </span>
-            </a>
-        @else
-            <a href="{{ route('like', $post) }}" class="btn btn-secondary btn-sm">
-                <b>お気に入り数</b>
-                <span class="badge">
-                    {{ $post->likes->count() }}
-                </span>
+                </a>
+            @else
+                <a href="{{ route('like', $post) }}" class="btn btn-secondary btn-sm">
+                    <b>お気に入り数</b>
+                    <span class="badge">
+                        {{ $post->likes->count() }}
+                    </span>
+            @endif
             </a>
         @endif
         <div class="flex flex-row text-center my-4">
