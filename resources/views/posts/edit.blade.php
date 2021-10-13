@@ -17,7 +17,7 @@
                     required placeholder="タイトル" value="{{ old('title', $post->title) }}">
             </div>
 
-                        <div class="form-group row">
+            <div class="form-group row">
                 <label for="radio01" class="col-md-4 col-form-label text-sm mb-2">カテゴリー</label>
                 <div class="col-md-6">
                     <div class="form-check">
