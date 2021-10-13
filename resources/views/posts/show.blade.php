@@ -8,14 +8,30 @@
             <h2 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-1 text-3xl md:text-4xl">
                 {{ $post->title }}</h2>
             <h3>{{ $post->user->name }}</h3>
+            <span class="text-red-400 font-bold">{{ $post->created_at->diffForHumans() }}</span>
             <p class="text-sm mb-2 md:text-base font-normal text-gray-600">
-                <span
-                    class="text-red-400 font-bold">{{ $post->created_at->diffForHumans() }}</span>
                 {{ $post->created_at }}
             </p>
             <img src="{{ $post->image_url }}" alt="" class="mb-4">
             <p class="text-gray-700 text-base">{!! nl2br(e($post->body)) !!}</p>
         </article>
+
+        @if ($like)
+            <a href="{{ route('unlike', $post) }}" 
+            class="bg-pink-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-42">お気に入りの削除</a><br><br>
+                <b>お気に入り数</b>
+                <span class="badge">
+                    {{ $post->likes->count() }}
+                </span>
+            </a>
+        @else
+            <a href="{{ route('like', $post) }}" class="btn btn-secondary btn-sm">
+                <b>お気に入り数</b>
+                <span class="badge">
+                    {{ $post->likes->count() }}
+                </span>
+            </a>
+        @endif
         <div class="flex flex-row text-center my-4">
             @can('update', $post)
                 <a href="{{ route('posts.edit', $post) }}"
@@ -30,19 +46,4 @@
                 </form>
             @endcan
         </div>
-@if($like)
-	<a href="{{ route('unlike', $post) }}" class="btn btn-success btn-sm">
-		お気に入り数
-		<span class="badge">
-			{{ $post->likes->count() }}
-		</span>
-	</a>
-@else
-	<a href="{{ route('like', $post) }}" class="btn btn-secondary btn-sm">
-		お気に入り数
-		<span class="badge">
-			{{ $post->likes->count() }}
-		</span>
-	</a>
-@endif
 </x-app-layout>
