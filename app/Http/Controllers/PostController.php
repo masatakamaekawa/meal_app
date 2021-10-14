@@ -79,17 +79,17 @@ class PostController extends Controller
      */
     public function show($id)
     {
-    $post = Post::find($id);
+        $post = Post::find($id);
         if(auth::check()){
 
-    $like = Like::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
+        $like = Like::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
         return view('posts.show', compact('post','like'));
     
-    }else
-    {
+        }else
+        {
         return view('posts.show', compact('post'));
+        }
     }
-}
     /**
      * Show the form for editing the specified resource.
      *
