@@ -40,9 +40,6 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-
-        $category_id = $request->category_id;
-
         $post = new Post($request->all());
         $post->user_id = $request->user()->id;
 
@@ -82,12 +79,15 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
+    $post = Post::find($id);
         if(auth::check()){
-        $like = Like::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
+
+    $like = Like::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
         return view('posts.show', compact('post','like'));
-        }else{
-            return view('posts.show', compact('post'));
+    
+    }else
+    {
+        return view('posts.show', compact('post'));
     }
 }
     /**
@@ -193,16 +193,9 @@ class PostController extends Controller
     {
         return date('YmdHis') . '_' . $file->getClientOriginalName();
     }
-        public function posts() {
-        return $this->hasMany('App\Models\Post');
-    }
-    public function likes() {
-        return $this->hasMany('App\Models\Like');
-    }
-        public function user() {
-        return $this->belongsTo('App\Models\User');
-    }
-    public function post() {
-        return $this->belongsTo('App\Models\Post');
-    }
+
+
+    
+
+
 }

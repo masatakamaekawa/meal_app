@@ -35,5 +35,5 @@ class Post extends Model
     public function getImagePathAttribute()
     {
         return 'images/posts/' . $this->image;
-    }    
+    } 
 }

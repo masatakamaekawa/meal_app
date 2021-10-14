@@ -29,7 +29,8 @@ Route::resource('posts', PostController::class)
 Route::resource('posts', PostController::class)
     ->only(['show', 'index']);
 
-Route::get('/post/like/{post}', [LikeController::class, 'like'])->name('like');
-Route::get('/post/unlike/{post}', [LikeController::class, 'unlike'])->name('unlike');
+Route::resource('posts.like', LikeController::class)
+    ->only(['store','destroy'])
+    ->middleware('auth');
 
 require __DIR__.'/auth.php';
